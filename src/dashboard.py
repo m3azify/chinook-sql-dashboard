@@ -13,6 +13,7 @@ Run from the project root:  python src/dashboard.py
 import csv
 import json
 import sys
+from datetime import datetime
 from pathlib import Path
 
 try:
@@ -118,7 +119,8 @@ def chart_country(rows: list[dict]) -> str:
 def chart_genre(rows: list[dict]) -> str:
     top = sorted(rows, key=lambda r: float(r["revenue"]), reverse=True)[:8]
     other_rev = sum(float(r["revenue"]) for r in rows) - sum(float(r["revenue"]) for r in top)
-    labels = [r["genre"] for r in top] + (["Other (17 genres)"] if other_rev > 0 else [])
+    labels = ([r["genre"] for r in top] +
+              ([f"Other ({len(rows) - len(top)} genres)"] if other_rev > 0 else []))
     values = [float(r["revenue"]) for r in top] + ([other_rev] if other_rev > 0 else [])
     fig = go.Figure(go.Pie(
         labels=labels, values=values, hole=0.45,
@@ -213,14 +215,45 @@ def chart_aov(rows: list[dict]) -> str:
     return fig_to_div(fig)
 
 
+def chart_growth(rows: list[dict]) -> str:
+    # Month-over-month revenue change. The first month has no predecessor and
+    # is dropped (NULL growth is not a zero change). Bars are coloured by sign
+    # so the eye catches the swings the flat series otherwise hides.
+    data = [r for r in rows if r["growth_pct"] not in ("", "None")]
+    colors = [ACCENT if float(r["growth_pct"]) >= 0 else "#dc2626" for r in data]
+    fig = go.Figure(go.Bar(
+        x=[r["month"] for r in data],
+        y=[float(r["growth_pct"]) for r in data],
+        marker=dict(color=colors, line=dict(width=0)),
+        hovertemplate=("<b>%{x}</b><br>Growth: %{y:+.1f}%<br>"
+                      "Revenue: $%{customdata:,.2f}<extra></extra>"),
+        customdata=[float(r["revenue"]) for r in data],
+    ))
+    fig.add_hline(y=0, line_width=1, line_color="#cbd5e1")
+    style(fig, "Month-over-month revenue growth", height=260)
+    fig.update_yaxes(ticksuffix="%", tickformat=".0f")
+    fig.update_xaxes(tickangle=-45, nticks=12)
+    fig.update_layout(showlegend=False, bargap=0.2)
+    return fig_to_div(fig)
+
+
 def build_kpi_cards(kpi: dict) -> str:
+    first = datetime.strptime(kpi["first_invoice_date"][:10], "%Y-%m-%d")
+    last = datetime.strptime(kpi["last_invoice_date"][:10], "%Y-%m-%d")
+    no_invoices = int(kpi["customers_with_no_invoices"])
+    customers_sub = ("all have purchased" if no_invoices == 0
+                     else f"{no_invoices} never purchased")
     cards = [
-        ("Total revenue", money(kpi["total_revenue"]), "across 412 invoices"),
-        ("Invoices", f"{int(kpi['total_invoices']):,}", "Jan 2021 - Dec 2025"),
+        ("Total revenue", money(kpi["total_revenue"]),
+         f"across {int(kpi['total_invoices']):,} invoices"),
+        ("Invoices", f"{int(kpi['total_invoices']):,}",
+         f"{first:%b %Y} - {last:%b %Y}"),
         ("Avg. order value", money(kpi["avg_order_value"]), "per invoice"),
-        ("Customers", f"{int(kpi['total_customers']):,}", "all have purchased"),
+        ("Customers", f"{int(kpi['total_customers']):,}", customers_sub),
         ("Units sold", f"{int(kpi['units_sold']):,}", "track purchases"),
-        ("Catalog coverage", f"{kpi['pct_catalog_sold']}%", "of 3,503 tracks sold"),
+        ("Catalog coverage", f"{kpi['pct_catalog_sold']}%",
+         f"{int(kpi['distinct_tracks_sold']):,} of "
+         f"{int(kpi['tracks_in_catalog']):,} tracks sold"),
     ]
     html = []
     for label, value, sub in cards:
@@ -306,6 +339,7 @@ def main() -> int:
     aov = read_csv("07_avg_order_value.csv")
     employees = read_csv("08_employee_sales.csv")
     media = read_csv("09_media_type_revenue.csv")
+    growth = read_csv("10_sales_growth.csv")
 
     manifest = {}
     if MANIFEST_PATH.exists():
@@ -319,6 +353,7 @@ def main() -> int:
         "employees": chart_employees(employees),
         "media": chart_media(media),
         "aov": chart_aov(aov),
+        "growth": chart_growth(growth),
     }
 
     kpi_cards = build_kpi_cards(kpi)
@@ -400,6 +435,7 @@ def main() -> int:
     .kpi-grid {{ grid-template-columns: repeat(2, 1fr); }}
   }}
 </style>
+<script>{plotly_js}</script>
 </head>
 <body>
 <div class="wrap">
@@ -426,6 +462,7 @@ def main() -> int:
   <div class="section-title">Revenue over time</div>
   <div class="grid">
     <div class="card wide">{charts['monthly']}</div>
+    <div class="card wide">{charts['growth']}</div>
   </div>
 
   <div class="section-title">Markets and products</div>
@@ -453,7 +490,6 @@ def main() -> int:
     offline. Data source: Chinook sample database (lerocha/chinook-database), used for learning.
   </footer>
 </div>
-<script>{plotly_js}</script>
 </body>
 </html>"""
 

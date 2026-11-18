@@ -68,15 +68,26 @@ def print_table(columns: list[str], rows: list[tuple]) -> None:
 def run_one(conn: sqlite3.Connection, path: Path) -> dict:
     sql_text = path.read_text(encoding="utf-8")
     title = read_title(sql_text, path.stem)
-    # Count real statements (ignore comment-only and blank lines) so a file with
-    # two SELECTs fails loudly instead of silently running only the first.
-    code_lines = [ln for ln in sql_text.splitlines()
-                  if not ln.strip().startswith("--")]
-    statements = [s for s in "\n".join(code_lines).split(";") if s.strip()]
-    if len(statements) > 1:
+    # Split on semicolons that actually terminate a statement. sqlite3's
+    # complete_statement() understands string literals and comments, so a ';'
+    # inside '...' or inside a '--' comment does not create a false boundary.
+    statements = []
+    buffer: list[str] = []
+    for char in sql_text:
+        buffer.append(char)
+        if char == ";" and sqlite3.complete_statement("".join(buffer)):
+            statements.append("".join(buffer).strip())
+            buffer = []
+    trailing_code = "\n".join(
+        line for line in "".join(buffer).splitlines()
+        if not line.strip().startswith("--")).strip()
+    if trailing_code:
+        raise ValueError(f"{path.name}: unterminated SQL statement "
+                         "(missing final semicolon)")
+    if len(statements) != 1:
         raise ValueError(f"{path.name}: contains {len(statements)} statements; "
                          f"split it into separate files.")
-    cursor = conn.execute(sql_text)
+    cursor = conn.execute(statements[0])
     columns = [d[0] for d in cursor.description]
     rows = cursor.fetchall()
     cursor.close()

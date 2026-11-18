@@ -99,7 +99,7 @@ start output\chinook_dashboard.html
 ```
 
 Expected: a 4.66 MB HTML file that opens in the browser with 6 KPI cards,
-7 charts and a top-10 customer table, and works with Wi-Fi off.
+8 charts and a top-10 customer table, and works with Wi-Fi off.
 
 ## 7. Write the docs
 

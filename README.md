@@ -6,7 +6,7 @@ built from the results. Built to prove SQL + BI skills on a dataset a reviewer
 can reproduce in under a minute.
 
 **Author:** Moaz - final-year CS & Data Science student, Alexandria, Egypt.
-**Stack:** Python 3.15, SQLite (stdlib), plotly 7.1.0. No paid services, no API keys.
+**Stack:** Python 3.15.2, SQLite (stdlib), plotly 7.1.0. No paid services, no API keys.
 
 ## What it is
 
@@ -23,7 +23,7 @@ the answers into a dashboard that opens in a browser with no server.
 
 | Metric | Value |
 |---|---|
-| Tables | 11 (64 columns, 14 foreign keys) |
+| Tables | 11 (64 columns, 11 foreign keys) |
 | Customers | 59 (all have purchased; 0 inactive) |
 | Invoices | 412 (Jan 2021 - Dec 2025) |
 | Invoice lines | 2,240 (2,240 units; 5.44 per invoice) |
@@ -80,8 +80,8 @@ go stale.
    $1,956.24 (84.0%), Protected MPEG-4 video $220.89 (9.5%), Protected AAC
    $144.54 (6.2%).
 10. **Revenue growth** (`10_sales_growth.sql`, 60 rows) - month-over-month change
-    via `LAG()`, plus a running total. Largest single-month jump: +39.9% in
-    Jan 2022; deepest drop: -36.8% in Nov 2023.
+    via `LAG()`, plus a running total. Largest single-month jump: +58.3% in
+    Dec 2023; deepest drop: -36.8% in Nov 2023.
 
 ## How to run
 

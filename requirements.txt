@@ -1,3 +1,7 @@
-﻿plotly==7.1.0
+﻿# Direct dependency (imported by src/dashboard.py)
+plotly==7.1.0
+
+# Transitive dependencies of plotly. Not imported by this project directly,
+# pinned so the exact working set from the verified run can be reproduced.
 narwhals==2.29.0
 packaging==26.3
