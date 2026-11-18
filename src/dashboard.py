@@ -253,7 +253,7 @@ def build_kpi_cards(kpi: dict) -> str:
         ("Units sold", f"{int(kpi['units_sold']):,}", "track purchases"),
         ("Catalog coverage", f"{kpi['pct_catalog_sold']}%",
          f"{int(kpi['distinct_tracks_sold']):,} of "
-         f"{int(kpi['tracks_in_catalog']):,} tracks sold"),
+         f"{int(kpi['tracks_in_catalog']):,} catalogue tracks sold"),
     ]
     html = []
     for label, value, sub in cards:

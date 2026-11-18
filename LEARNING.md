@@ -164,7 +164,7 @@ trick is embedding `plotly.js` once in the page header and telling every chart
 
 Design points worth copying:
 
-- One `style()` function applied to every figure, so 7 charts look like one
+- One `style()` function applied to every figure, so 8 charts look like one
   document.
 - Read-only data: the dashboard only reads CSVs, never the database. If a
   chart is wrong, the CSV (and the SQL behind it) is where you fix it.
