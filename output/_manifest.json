@@ -1,0 +1,189 @@
+{
+  "database": "data/chinook.sqlite",
+  "database_sha256": "7651ba378ac2fcd0dfc3c66fb101f7a7eed3ba39a612ec642b96e20702061f15",
+  "generated_at": "2026-11-18T13:51:45",
+  "query_count": 11,
+  "total_rows": 292,
+  "queries": [
+    {
+      "file": "00_schema.sql",
+      "name": "00_schema",
+      "title": "00 - What does the database look like?",
+      "rows": 64,
+      "columns": [
+        "table_name",
+        "column_no",
+        "column_name",
+        "data_type",
+        "nullability",
+        "key_type",
+        "foreign_key"
+      ],
+      "csv": "output/00_schema.csv"
+    },
+    {
+      "file": "01_kpis.sql",
+      "name": "01_kpis",
+      "title": "01 - What are the headline numbers for the whole business?",
+      "rows": 1,
+      "columns": [
+        "total_invoices",
+        "total_customers",
+        "customers_with_no_invoices",
+        "invoice_lines",
+        "units_sold",
+        "total_revenue",
+        "avg_order_value",
+        "distinct_tracks_sold",
+        "tracks_in_catalog",
+        "pct_catalog_sold",
+        "first_invoice_date",
+        "last_invoice_date"
+      ],
+      "csv": "output/01_kpis.csv"
+    },
+    {
+      "file": "02_top_customers.sql",
+      "name": "02_top_customers",
+      "title": "02 - Which customers spend the most?",
+      "rows": 10,
+      "columns": [
+        "revenue_rank",
+        "customer_id",
+        "customer_name",
+        "country",
+        "email",
+        "orders",
+        "lifetime_revenue",
+        "pct_of_total_revenue"
+      ],
+      "csv": "output/02_top_customers.csv"
+    },
+    {
+      "file": "03_revenue_by_country.sql",
+      "name": "03_revenue_by_country",
+      "title": "03 - Where does the money come from geographically?",
+      "rows": 24,
+      "columns": [
+        "country",
+        "customers",
+        "orders",
+        "revenue",
+        "pct_of_total_revenue"
+      ],
+      "csv": "output/03_revenue_by_country.csv"
+    },
+    {
+      "file": "04_top_artists.sql",
+      "name": "04_top_artists",
+      "title": "04 - Which artists make me the most money?",
+      "rows": 10,
+      "columns": [
+        "revenue_rank",
+        "artist_id",
+        "artist_name",
+        "albums_in_catalog",
+        "tracks_sold",
+        "units_sold",
+        "revenue",
+        "pct_of_total_revenue"
+      ],
+      "csv": "output/04_top_artists.csv"
+    },
+    {
+      "file": "05_monthly_revenue.sql",
+      "name": "05_monthly_revenue",
+      "title": "05 - How does revenue move month by month?",
+      "rows": 60,
+      "columns": [
+        "month",
+        "invoices",
+        "unique_customers",
+        "revenue",
+        "avg_invoice_value",
+        "cumulative_revenue"
+      ],
+      "csv": "output/05_monthly_revenue.csv"
+    },
+    {
+      "file": "06_genre_performance.sql",
+      "name": "06_genre_performance",
+      "title": "06 - Which genres actually sell?",
+      "rows": 25,
+      "columns": [
+        "genre_id",
+        "genre",
+        "tracks_in_genre",
+        "tracks_sold",
+        "units_sold",
+        "revenue",
+        "pct_of_total_revenue"
+      ],
+      "csv": "output/06_genre_performance.csv"
+    },
+    {
+      "file": "07_avg_order_value.sql",
+      "name": "07_avg_order_value",
+      "title": "07 - How big is a typical order, and does it differ by market?",
+      "rows": 25,
+      "columns": [
+        "market",
+        "orders",
+        "avg_order_value",
+        "smallest_order",
+        "largest_order",
+        "revenue"
+      ],
+      "csv": "output/07_avg_order_value.csv"
+    },
+    {
+      "file": "08_employee_sales.sql",
+      "name": "08_employee_sales",
+      "title": "08 - Which sales rep brings in the most revenue?",
+      "rows": 8,
+      "columns": [
+        "sales_rank",
+        "employee_id",
+        "employee_name",
+        "title",
+        "location",
+        "customers_owned",
+        "invoices",
+        "revenue",
+        "pct_of_total_revenue"
+      ],
+      "csv": "output/08_employee_sales.csv"
+    },
+    {
+      "file": "09_media_type_revenue.sql",
+      "name": "09_media_type_revenue",
+      "title": "09 - Which media format sells?",
+      "rows": 5,
+      "columns": [
+        "media_type_id",
+        "media_type",
+        "tracks_in_catalog",
+        "units_sold",
+        "revenue",
+        "pct_of_total_revenue"
+      ],
+      "csv": "output/09_media_type_revenue.csv"
+    },
+    {
+      "file": "10_sales_growth.sql",
+      "name": "10_sales_growth",
+      "title": "10 - Is the business growing?",
+      "rows": 60,
+      "columns": [
+        "month",
+        "invoices",
+        "revenue",
+        "previous_month_revenue",
+        "revenue_change",
+        "growth_pct",
+        "cumulative_revenue"
+      ],
+      "csv": "output/10_sales_growth.csv"
+    }
+  ]
+}

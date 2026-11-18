@@ -1,0 +1,25 @@
+﻿country,customers,orders,revenue,pct_of_total_revenue
+USA,13,91,523.06,22.5
+Canada,8,56,303.96,13.1
+France,5,35,195.1,8.4
+Brazil,5,35,190.1,8.2
+Germany,4,28,156.48,6.7
+United Kingdom,3,21,112.86,4.8
+Czech Republic,2,14,90.24,3.9
+Portugal,2,14,77.24,3.3
+India,2,13,75.26,3.2
+Chile,1,7,46.62,2.0
+Ireland,1,7,45.62,2.0
+Hungary,1,7,45.62,2.0
+Austria,1,7,42.62,1.8
+Finland,1,7,41.62,1.8
+Netherlands,1,7,40.62,1.7
+Norway,1,7,39.62,1.7
+Sweden,1,7,38.62,1.7
+Spain,1,7,37.62,1.6
+Poland,1,7,37.62,1.6
+Italy,1,7,37.62,1.6
+Denmark,1,7,37.62,1.6
+Belgium,1,7,37.62,1.6
+Australia,1,7,37.62,1.6
+Argentina,1,7,37.62,1.6

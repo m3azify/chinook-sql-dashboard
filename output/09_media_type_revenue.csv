@@ -1,0 +1,6 @@
+﻿media_type_id,media_type,tracks_in_catalog,units_sold,revenue,pct_of_total_revenue
+1,MPEG audio file,1745,1976,1956.24,84.0
+3,Protected MPEG-4 video file,103,111,220.89,9.5
+2,Protected AAC audio file,129,146,144.54,6.2
+4,Purchased AAC audio file,4,4,3.96,0.2
+5,AAC audio file,3,3,2.97,0.1

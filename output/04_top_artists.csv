@@ -1,0 +1,11 @@
+﻿revenue_rank,artist_id,artist_name,albums_in_catalog,tracks_sold,units_sold,revenue,pct_of_total_revenue
+1,90,Iron Maiden,21,123,140,138.6,5.95
+2,150,U2,10,91,107,105.93,4.55
+3,50,Metallica,10,79,91,90.09,3.87
+4,22,Led Zeppelin,14,77,87,86.13,3.7
+5,149,Lost,4,40,41,81.59,3.5
+6,156,The Office,3,22,25,49.75,2.14
+7,113,Os Paralamas Do Sucesso,3,39,45,44.55,1.91
+8,58,Deep Purple,11,41,44,43.56,1.87
+9,82,Faith No More,4,36,42,41.58,1.79
+10,81,Eric Clapton,2,35,40,39.6,1.7

@@ -1,0 +1,2 @@
+﻿total_invoices,total_customers,customers_with_no_invoices,invoice_lines,units_sold,total_revenue,avg_order_value,distinct_tracks_sold,tracks_in_catalog,pct_catalog_sold,first_invoice_date,last_invoice_date
+412,59,0,2240,2240,2328.6,5.65,1984,3503,56.6,2021-01-01 00:00:00,2025-12-22 00:00:00

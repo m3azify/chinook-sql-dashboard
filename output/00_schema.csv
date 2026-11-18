@@ -1,0 +1,65 @@
+﻿table_name,column_no,column_name,data_type,nullability,key_type,foreign_key
+Album,1,AlbumId,INTEGER,required,PK,
+Album,2,Title,NVARCHAR(160),required,,
+Album,3,ArtistId,INTEGER,required,,-> Artist.ArtistId
+Artist,1,ArtistId,INTEGER,required,PK,
+Artist,2,Name,NVARCHAR(120),optional,,
+Customer,1,CustomerId,INTEGER,required,PK,
+Customer,2,FirstName,NVARCHAR(40),required,,
+Customer,3,LastName,NVARCHAR(20),required,,
+Customer,4,Company,NVARCHAR(80),optional,,
+Customer,5,Address,NVARCHAR(70),optional,,
+Customer,6,City,NVARCHAR(40),optional,,
+Customer,7,State,NVARCHAR(40),optional,,
+Customer,8,Country,NVARCHAR(40),optional,,
+Customer,9,PostalCode,NVARCHAR(10),optional,,
+Customer,10,Phone,NVARCHAR(24),optional,,
+Customer,11,Fax,NVARCHAR(24),optional,,
+Customer,12,Email,NVARCHAR(60),required,,
+Customer,13,SupportRepId,INTEGER,optional,,-> Employee.EmployeeId
+Employee,1,EmployeeId,INTEGER,required,PK,
+Employee,2,LastName,NVARCHAR(20),required,,
+Employee,3,FirstName,NVARCHAR(20),required,,
+Employee,4,Title,NVARCHAR(30),optional,,
+Employee,5,ReportsTo,INTEGER,optional,,-> Employee.EmployeeId
+Employee,6,BirthDate,DATETIME,optional,,
+Employee,7,HireDate,DATETIME,optional,,
+Employee,8,Address,NVARCHAR(70),optional,,
+Employee,9,City,NVARCHAR(40),optional,,
+Employee,10,State,NVARCHAR(40),optional,,
+Employee,11,Country,NVARCHAR(40),optional,,
+Employee,12,PostalCode,NVARCHAR(10),optional,,
+Employee,13,Phone,NVARCHAR(24),optional,,
+Employee,14,Fax,NVARCHAR(24),optional,,
+Employee,15,Email,NVARCHAR(60),optional,,
+Genre,1,GenreId,INTEGER,required,PK,
+Genre,2,Name,NVARCHAR(120),optional,,
+Invoice,1,InvoiceId,INTEGER,required,PK,
+Invoice,2,CustomerId,INTEGER,required,,-> Customer.CustomerId
+Invoice,3,InvoiceDate,DATETIME,required,,
+Invoice,4,BillingAddress,NVARCHAR(70),optional,,
+Invoice,5,BillingCity,NVARCHAR(40),optional,,
+Invoice,6,BillingState,NVARCHAR(40),optional,,
+Invoice,7,BillingCountry,NVARCHAR(40),optional,,
+Invoice,8,BillingPostalCode,NVARCHAR(10),optional,,
+Invoice,9,Total,"NUMERIC(10,2)",required,,
+InvoiceLine,1,InvoiceLineId,INTEGER,required,PK,
+InvoiceLine,2,InvoiceId,INTEGER,required,,-> Invoice.InvoiceId
+InvoiceLine,3,TrackId,INTEGER,required,,-> Track.TrackId
+InvoiceLine,4,UnitPrice,"NUMERIC(10,2)",required,,
+InvoiceLine,5,Quantity,INTEGER,required,,
+MediaType,1,MediaTypeId,INTEGER,required,PK,
+MediaType,2,Name,NVARCHAR(120),optional,,
+Playlist,1,PlaylistId,INTEGER,required,PK,
+Playlist,2,Name,NVARCHAR(120),optional,,
+PlaylistTrack,1,PlaylistId,INTEGER,required,PK,-> Playlist.PlaylistId
+PlaylistTrack,2,TrackId,INTEGER,required,,-> Track.TrackId
+Track,1,TrackId,INTEGER,required,PK,
+Track,2,Name,NVARCHAR(200),required,,
+Track,3,AlbumId,INTEGER,optional,,-> Album.AlbumId
+Track,4,MediaTypeId,INTEGER,required,,-> MediaType.MediaTypeId
+Track,5,GenreId,INTEGER,optional,,-> Genre.GenreId
+Track,6,Composer,NVARCHAR(220),optional,,
+Track,7,Milliseconds,INTEGER,required,,
+Track,8,Bytes,INTEGER,optional,,
+Track,9,UnitPrice,"NUMERIC(10,2)",required,,

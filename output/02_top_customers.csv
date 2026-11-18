@@ -1,0 +1,11 @@
+﻿revenue_rank,customer_id,customer_name,country,email,orders,lifetime_revenue,pct_of_total_revenue
+1,6,Helena Holý,Czech Republic,hholy@gmail.com,7,49.62,2.13
+2,26,Richard Cunningham,USA,ricunningham@hotmail.com,7,47.62,2.05
+3,57,Luis Rojas,Chile,luisrojas@yahoo.cl,7,46.62,2.0
+4,45,Ladislav Kovács,Hungary,ladislav_kovacs@apple.hu,7,45.62,1.96
+4,46,Hugh O'Reilly,Ireland,hughoreilly@apple.ie,7,45.62,1.96
+6,24,Frank Ralston,USA,fralston@gmail.com,7,43.62,1.87
+6,28,Julia Barnett,USA,jubarnett@gmail.com,7,43.62,1.87
+6,37,Fynn Zimmermann,Germany,fzimmermann@yahoo.de,7,43.62,1.87
+9,7,Astrid Gruber,Austria,astrid.gruber@apple.at,7,42.62,1.83
+9,25,Victor Stevens,USA,vstevens@yahoo.com,7,42.62,1.83
